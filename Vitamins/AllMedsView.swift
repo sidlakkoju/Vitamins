@@ -25,7 +25,7 @@ struct AllMedsView: View {
                         .bold()
                         .padding()
                     
-                    ForEach($Medications) { $med in
+                    ForEach($Medications, id:\.id) { $med in
                         
                         Button(action: {
                             currentMed = med

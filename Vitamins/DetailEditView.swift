@@ -13,6 +13,13 @@ struct DetailEditView: View {
     @Binding var Medications: [Medication]
     @Binding var showMedicationsEditView: Bool
     
+    
+    
+    
+    
+    
+    
+    
     @State private var currentDate = Date()
 
     var body: some View {

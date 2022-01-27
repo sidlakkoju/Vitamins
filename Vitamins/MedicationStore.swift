@@ -15,8 +15,8 @@ class MedicationStore {
         self.Medications = []
     }
     
-    func addMedication(theme: Theme, title: String) {
-        self.Medications.append(Medication(title: title, theme: theme))
+    func addMedication(theme: Theme, title: String, remHour: Int, remMinute: Int) {        
+        self.Medications.append(Medication(title: title, theme: theme, remHour: remHour, remMinute: remMinute))
     }
     
     func removeMedication(med: Medication) {
