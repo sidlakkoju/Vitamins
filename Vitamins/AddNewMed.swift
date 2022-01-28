@@ -10,6 +10,7 @@ import SwiftUI
 struct AddNewMed: View {
     @State var data: Medication.Data = Medication.Data(title: "", theme: .kindaBlue, vitTaken: false)
     
+
     @Binding var Medications: [Medication]
     @Binding var NewMedicationWindow: Bool
     
@@ -56,7 +57,9 @@ struct AddNewMed: View {
             }
             
             Button(action: {
-                Medications.append(Medication(data: data))
+                let localMed = Medication(data: data)
+                localMed.scheduleNotification()
+                Medications.append(localMed)
                 NewMedicationWindow = false
             }, label: {
                 ZStack{

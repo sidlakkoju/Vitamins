@@ -63,6 +63,10 @@ struct DetailEditView: View {
                 Button(action: {
                     withAnimation {
                         currentMed.update(from: data)
+                        
+                        currentMed.cancelNotification() // Cancel all the repeating Notification scheduled for the old time.
+                        currentMed.scheduleNotification() // Once again schedule the Notifications for the new time.
+                        
                         updateMedications()
                         showMedicationsEditView = false
                     }
