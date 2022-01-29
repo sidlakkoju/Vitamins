@@ -38,6 +38,11 @@ enum Theme: String, CaseIterable, Identifiable {
             return "Kinda Blue"
         }
     }
+    
+    var accentColor: Color {
+        return Color("Kinda Blue Accents")
+    }
+    
     var id: String {
         name
     }

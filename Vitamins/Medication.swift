@@ -48,13 +48,50 @@ extension Medication {
         var title: String = ""
         var theme: Theme = .kindaBlue
         var vitTaken: Bool = false
-        
         var remHour: Int = 0;
         var remMinute: Int = 0;
+        
+        func timeToString() -> String {
+            let timeDay: String
+            let hour: String
+            let minute: String
+            
+            if (remHour < 12) {
+                timeDay = "AM"
+                if (remHour == 0) {
+                    hour = "12"
+                }
+                else if (remHour < 10) {
+                    hour = "0" + String(remHour)
+                }
+                else {
+                    hour = String(remHour)
+                }
+            }
+            else {
+                timeDay = "PM"
+                if (remHour == 12) {
+                    hour = String(remHour)
+                }
+                else {
+                    hour = String(remHour - 12)
+                }
+            }
+            
+            if (remMinute < 10) {
+                minute = "0" + String(remMinute)
+            }
+            else {
+                minute = String(remMinute)
+            }
+            
+            return hour + ":" + minute + " " + timeDay
+        }
     }
     
     var data: Data {
         Data(title: title, theme: theme, vitTaken: vitTaken, remHour: remHour, remMinute: remMinute)
+        
     }
     
     mutating func update(from data: Data) {

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
- @main
+@main
 struct VitaminsApp: App {
     @State private var listOfMeds: [Medication] = Medication.sampleData
     @State private var currentMed: Medication = Medication.sampleData[0]

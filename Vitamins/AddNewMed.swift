@@ -43,14 +43,21 @@ struct AddNewMed: View {
                                     .foregroundColor(Color("Text Color"))
                             }
                         })
-
-                        HStack {
-                            Image(systemName: "timer")
-                            DatePicker("", selection: $currentDate, displayedComponents: .hourAndMinute)
-                                        .labelsHidden()
-                        }
-                        .padding(.trailing)
-                        .padding(.leading)
+                        
+                        Button(action: {
+                            
+                        }, label: {
+                            HStack {
+                                //try to change to large title
+                                Image(systemName: "timer")
+                                    .font(.title)
+                                Text(data.timeToString())
+                                    .fontWeight(.bold)
+                            }
+                        })
+                            .padding()
+                        
+                       
                     }
                     .padding()
                 }

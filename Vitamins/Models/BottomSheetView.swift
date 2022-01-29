@@ -57,7 +57,7 @@ struct BottomSheetView<Content: View>: View {
             .cornerRadius(Constants.radius)
             .frame(height: geometry.size.height, alignment: .bottom)
             .offset(y: max(self.offset + self.translation, 0))
-            .animation(.interactiveSpring())
+            .animation(.interactiveSpring(response: 0.35, dampingFraction: 0.8, blendDuration: 0.5))
             .gesture(
                 DragGesture().updating(self.$translation) { value, state, _ in
                     state = value.translation.height

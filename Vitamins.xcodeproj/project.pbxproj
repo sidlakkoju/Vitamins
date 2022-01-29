@@ -10,6 +10,7 @@
 		0F71FF22278A4175002EAF60 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71FF21278A4175002EAF60 /* BottomSheetView.swift */; };
 		0F71FF26278A4442002EAF60 /* AllMedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71FF25278A4442002EAF60 /* AllMedsView.swift */; };
 		0F71FF28278A4897002EAF60 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71FF27278A4897002EAF60 /* CardView.swift */; };
+		0F7DCD6427A5184F002E5FDA /* TimeSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7DCD6327A5184F002E5FDA /* TimeSelectorView.swift */; };
 		0F9897BC277E2D5200BED1AE /* VitaminsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9897BB277E2D5200BED1AE /* VitaminsApp.swift */; };
 		0F9897C0277E2D5200BED1AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F9897BF277E2D5200BED1AE /* Assets.xcassets */; };
 		0F9897C3277E2D5200BED1AE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F9897C2277E2D5200BED1AE /* Preview Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		0F71FF21278A4175002EAF60 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		0F71FF25278A4442002EAF60 /* AllMedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMedsView.swift; sourceTree = "<group>"; };
 		0F71FF27278A4897002EAF60 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		0F7DCD6327A5184F002E5FDA /* TimeSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSelectorView.swift; sourceTree = "<group>"; };
 		0F9897B8277E2D5200BED1AE /* Vitamins.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vitamins.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F9897BB277E2D5200BED1AE /* VitaminsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitaminsApp.swift; sourceTree = "<group>"; };
 		0F9897BF277E2D5200BED1AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				0F71FF25278A4442002EAF60 /* AllMedsView.swift */,
 				0F9C5A6E278CADC900DE4D2C /* AddNewMed.swift */,
 				0F9C5A70278CAE9B00DE4D2C /* DetailEditView.swift */,
+				0F7DCD6327A5184F002E5FDA /* TimeSelectorView.swift */,
 				0F9C5A72278CB82700DE4D2C /* Color Picker.swift */,
 				0F9897CA277E2D6F00BED1AE /* Medication.swift */,
 				0FA5B95B277FC9DD00F5EFE4 /* MedicationStore.swift */,
@@ -178,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F7DCD6427A5184F002E5FDA /* TimeSelectorView.swift in Sources */,
 				0F9897CB277E2D6F00BED1AE /* Medication.swift in Sources */,
 				0F71FF26278A4442002EAF60 /* AllMedsView.swift in Sources */,
 				0F71FF22278A4175002EAF60 /* BottomSheetView.swift in Sources */,

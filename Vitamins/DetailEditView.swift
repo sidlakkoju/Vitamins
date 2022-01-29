@@ -16,10 +16,6 @@ struct DetailEditView: View {
     
     
     
-    
-    
-    
-    
     @State private var currentDate = Date()
 
     var body: some View {
