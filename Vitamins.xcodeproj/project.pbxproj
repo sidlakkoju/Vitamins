@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F6BE91227A6578A00CDE867 /* dataTestFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6BE91127A6578A00CDE867 /* dataTestFile.swift */; };
 		0F71FF22278A4175002EAF60 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71FF21278A4175002EAF60 /* BottomSheetView.swift */; };
 		0F71FF26278A4442002EAF60 /* AllMedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71FF25278A4442002EAF60 /* AllMedsView.swift */; };
 		0F71FF28278A4897002EAF60 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F71FF27278A4897002EAF60 /* CardView.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F6BE91127A6578A00CDE867 /* dataTestFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataTestFile.swift; sourceTree = "<group>"; };
 		0F71FF21278A4175002EAF60 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		0F71FF25278A4442002EAF60 /* AllMedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllMedsView.swift; sourceTree = "<group>"; };
 		0F71FF27278A4897002EAF60 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				0F9897CA277E2D6F00BED1AE /* Medication.swift */,
 				0FA5B95B277FC9DD00F5EFE4 /* MedicationStore.swift */,
 				0F9897BF277E2D5200BED1AE /* Assets.xcassets */,
+				0F6BE91127A6578A00CDE867 /* dataTestFile.swift */,
 				0F9897C9277E2D6200BED1AE /* Models */,
 				0F9897C1277E2D5200BED1AE /* Preview Content */,
 			);
@@ -190,6 +193,7 @@
 				0FA5B95C277FC9DD00F5EFE4 /* MedicationStore.swift in Sources */,
 				0F9897CF277E2E3100BED1AE /* Theme.swift in Sources */,
 				0F9C5A6F278CADC900DE4D2C /* AddNewMed.swift in Sources */,
+				0F6BE91227A6578A00CDE867 /* dataTestFile.swift in Sources */,
 				0F9897D3277E302E00BED1AE /* CombinedAppView.swift in Sources */,
 				0F9C5A73278CB82700DE4D2C /* Color Picker.swift in Sources */,
 				0F9897CD277E2E1200BED1AE /* History.swift in Sources */,

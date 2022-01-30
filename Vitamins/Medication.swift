@@ -51,13 +51,10 @@ extension Medication {
         var remHour: Int = 0;
         var remMinute: Int = 0;
         
-        func timeToString() -> String {
-            let timeDay: String
+        func hourToString() -> String {
             let hour: String
-            let minute: String
             
             if (remHour < 12) {
-                timeDay = "AM"
                 if (remHour == 0) {
                     hour = "12"
                 }
@@ -69,15 +66,25 @@ extension Medication {
                 }
             }
             else {
-                timeDay = "PM"
                 if (remHour == 12) {
                     hour = String(remHour)
                 }
                 else {
-                    hour = String(remHour - 12)
+                    
+                    if (remHour - 12 < 10) {
+                        hour = "0" + String(remHour - 12)
+                    }
+                    else  {
+                        hour = String(remHour - 12)
+                    }
                 }
             }
             
+            return hour
+        }
+        
+        func minuteToString() -> String {
+            let minute: String
             if (remMinute < 10) {
                 minute = "0" + String(remMinute)
             }
@@ -85,7 +92,24 @@ extension Medication {
                 minute = String(remMinute)
             }
             
-            return hour + ":" + minute + " " + timeDay
+            return minute
+        }
+        
+        func timeDayString() -> String {
+            let timeDay: String
+          
+            if (remHour < 12) {
+                timeDay = "AM"
+            }
+            else {
+                timeDay = "PM"
+            }
+            
+            return timeDay
+        }
+        
+        func timeToString() -> String {
+            return hourToString() + ":" + minuteToString() + " " + timeDayString()
         }
     }
     
