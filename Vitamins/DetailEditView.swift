@@ -8,23 +8,27 @@
 import SwiftUI
 
 struct DetailEditView: View {
-    @State var data: Medication.Data
+    
     @Binding var currentMed: Medication
     @Binding var Medications: [Medication]
     @Binding var showMedicationsEditView: Bool
     
     
     
+    @Binding var timePickerViewShown: Bool
     
+    @Binding var dataStore: Medication.Data
+
+
     @State private var currentDate = Date()
 
     var body: some View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(data.theme.mainColor)
+                    .fill(dataStore.theme.mainColor)
                 VStack {
-                    TextField("Medication Name", text: $data.title)
+                    TextField("Medication Name", text: $dataStore.title)
                         .textFieldStyle(.roundedBorder)
                         .multilineTextAlignment(.center)
                         .padding()
@@ -35,21 +39,26 @@ struct DetailEditView: View {
                         }, label: {
                             ZStack{
                                 RoundedRectangle(cornerRadius: 10)
-                                    .fill(data.theme.mainColor)
-                                    .shadow(color: data.theme.lightShadow, radius: 5, x: -5, y: -5)
-                                    .shadow(color: data.theme.darkShadow, radius: 5, x: 5, y: 5)
-                                Text(data.theme.name)
+                                    .fill(dataStore.theme.mainColor)
+                                    .shadow(color: dataStore.theme.lightShadow, radius: 5, x: -5, y: -5)
+                                    .shadow(color: dataStore.theme.darkShadow, radius: 5, x: 5, y: 5)
+                                Text(dataStore.theme.name)
                                     .foregroundColor(Color("Text Color"))
                             }
                         })
-
-                        HStack {
-                            Image(systemName: "timer")
-                            DatePicker("", selection: $currentDate, displayedComponents: .hourAndMinute)
-                                        .labelsHidden()
-                        }
-                        .padding(.trailing)
-                        .padding(.leading)
+                        
+                        Button(action: {
+                            withAnimation() {
+                                timePickerViewShown = true
+                            }
+                        }, label: {
+                            HStack {
+                                Image(systemName: "timer")
+                                Text(dataStore.timeToString())
+                                    .fontWeight(.bold)
+                            }
+                        })
+                        .padding()
                     }
                     .padding()
                 }
@@ -58,7 +67,7 @@ struct DetailEditView: View {
             HStack {
                 Button(action: {
                     withAnimation {
-                        currentMed.update(from: data)
+                        currentMed.update(from: dataStore)
                         
                         currentMed.cancelNotification() // Cancel all the repeating Notification scheduled for the old time.
                         currentMed.scheduleNotification() // Once again schedule the Notifications for the new time.
@@ -115,7 +124,7 @@ struct DetailEditView: View {
 
 struct DetailEditView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailEditView(data: Medication.sampleData[0].data, currentMed: .constant(Medication.sampleData[0]), Medications: .constant(Medication.sampleData), showMedicationsEditView: .constant(false))
+        DetailEditView(currentMed: .constant(Medication.sampleData[0]), Medications: .constant(Medication.sampleData), showMedicationsEditView: .constant(false), timePickerViewShown: .constant(false), dataStore: .constant(Medication.sampleData[0].data))
             .previewLayout(.fixed(width: 400, height: 300))
             .preferredColorScheme(.dark)
     }

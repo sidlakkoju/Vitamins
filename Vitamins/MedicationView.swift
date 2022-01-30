@@ -12,6 +12,10 @@ struct MedicationView: View {
     @Binding var currentMed: Medication
     @Binding var Medications: [Medication]
     @State private var showMedicationsEditView: Bool = false
+    
+    @Binding var timePickerViewShown: Bool
+    
+    @Binding var dataStore: Medication.Data
 
     var body: some View {
         GeometryReader() { geometry in
@@ -88,7 +92,7 @@ struct MedicationView: View {
                     if (showMedicationsEditView) {
                         
                         
-                        DetailEditView(data: currentMed.data, currentMed: $currentMed, Medications: $Medications, showMedicationsEditView: $showMedicationsEditView)
+                        DetailEditView(currentMed: $currentMed, Medications: $Medications, showMedicationsEditView: $showMedicationsEditView, timePickerViewShown: $timePickerViewShown, dataStore: $dataStore)
                             .frame(width: geometry.size.width*0.9, height: 300, alignment: .center)
                     }
 
@@ -119,7 +123,7 @@ struct MedicationView: View {
 
 struct MedicationView_Previews: PreviewProvider {
     static var previews: some View {
-        MedicationView(currentMed: .constant(Medication.sampleData[0]), Medications: .constant(Medication.sampleData) )
+        MedicationView(currentMed: .constant(Medication.sampleData[0]), Medications: .constant(Medication.sampleData), timePickerViewShown: .constant(false), dataStore: .constant(Medication.sampleData[0].data))
             .preferredColorScheme(.dark)
     }
 }

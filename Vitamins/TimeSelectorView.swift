@@ -20,6 +20,8 @@ struct TimeSelectorView: View {
     @State var symbol = "AM"
     @State var angle: Double = 0
     
+    @Binding var timePickerViewShown: Bool
+
     
     var body: some View {
         VStack(spacing: 0) {
@@ -76,6 +78,21 @@ struct TimeSelectorView: View {
             // Circular Slider...
             TimeSlider(data: $data, angle: $angle, changeToMin: $changeToMin)
             
+            Button(action: {
+                withAnimation() {
+                    
+                    timePickerViewShown = false
+                    
+                }
+
+            }, label: {
+                Text("Done")
+                    .font(.title2)
+                    .fontWeight(.bold)
+            })
+                .padding(.bottom)
+            
+            
             
             
         } // end of VStack
@@ -93,7 +110,7 @@ extension TimeSelectorView {
 
 struct TimeSelectorView_Previews: PreviewProvider {
     static var previews: some View {
-        TimeSelectorView(data: .constant(Medication.sampleData[0].data))
+        TimeSelectorView(data: .constant(Medication.sampleData[0].data), timePickerViewShown: .constant(false))
             .preferredColorScheme(.dark)
     }
 }

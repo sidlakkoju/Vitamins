@@ -16,6 +16,10 @@ struct AllMedsView: View {
     @Binding var bottomSheetShown: Bool
     @State private var NewMedicationWindow: Bool = false
     
+    @Binding var timePickerViewShown: Bool
+    @Binding var dataStore: Medication.Data
+
+    
     var body: some View {
         GeometryReader() { geometry in
             ScrollView {
@@ -63,7 +67,7 @@ struct AllMedsView: View {
                     } // end of Add New Medication if statement
                     
                     if (NewMedicationWindow) {
-                        AddNewMed(Medications: $Medications, NewMedicationWindow: $NewMedicationWindow)
+                        AddNewMed(Medications: $Medications, NewMedicationWindow: $NewMedicationWindow, timePickerViewShown: $timePickerViewShown, dataStore: $dataStore)
                             .frame(width: geometry.size.width*0.9, height: 300, alignment: .center)
                             .padding(.trailing)
                             .padding(.leading)
@@ -82,7 +86,7 @@ struct AllMedsView_Previews: PreviewProvider {
     static var previews: some View {
         AllMedsView(Medications: .constant(Medication.sampleData),
                     currentMed: .constant(Medication.sampleData[0]),
-                    bottomSheetShown: .constant(true))
+                    bottomSheetShown: .constant(true), timePickerViewShown: .constant(false), dataStore: .constant(Medication.sampleData[0].data))
             .preferredColorScheme(.dark)
     }
 }

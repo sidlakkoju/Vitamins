@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct AddNewMed: View {
-    @State var data: Medication.Data = Medication.Data(title: "", theme: .kindaBlue, vitTaken: false)
     
 
     @Binding var Medications: [Medication]
     @Binding var NewMedicationWindow: Bool
+    @Binding var timePickerViewShown: Bool
+    
+    @Binding var dataStore: Medication.Data
+
+
     
     
     @State private var currentDate = Date()
@@ -23,9 +27,9 @@ struct AddNewMed: View {
         VStack {
             ZStack {
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(data.theme.mainColor)
+                    .fill(dataStore.theme.mainColor)
                 VStack {
-                    TextField("Medication Name", text: $data.title)
+                    TextField("Medication Name", text: $dataStore.title)
                         .textFieldStyle(.roundedBorder)
                         .multilineTextAlignment(.center)
                         .padding()
@@ -36,22 +40,26 @@ struct AddNewMed: View {
                         }, label: {
                             ZStack{
                                 RoundedRectangle(cornerRadius: 10)
-                                    .fill(data.theme.mainColor)
-                                    .shadow(color: data.theme.lightShadow, radius: 10, x: -10, y: -10)
-                                    .shadow(color: data.theme.darkShadow, radius: 10, x: 10, y: 10)
-                                Text(data.theme.name)
+                                    .fill(dataStore.theme.mainColor)
+                                    .shadow(color: dataStore.theme.lightShadow, radius: 10, x: -10, y: -10)
+                                    .shadow(color: dataStore.theme.darkShadow, radius: 10, x: 10, y: 10)
+                                Text(dataStore.theme.name)
                                     .foregroundColor(Color("Text Color"))
                             }
                         })
                         
                         Button(action: {
                             
+                            withAnimation() {
+                                timePickerViewShown = true
+                            }
+                            
                         }, label: {
                             HStack {
                                 //try to change to large title
                                 Image(systemName: "timer")
                                     .font(.title)
-                                Text(data.timeToString())
+                                Text(dataStore.timeToString())
                                     .fontWeight(.bold)
                             }
                         })
@@ -64,7 +72,7 @@ struct AddNewMed: View {
             }
             
             Button(action: {
-                let localMed = Medication(data: data)
+                let localMed = Medication(data: dataStore)
                 localMed.scheduleNotification()
                 Medications.append(localMed)
                 NewMedicationWindow = false
@@ -88,7 +96,7 @@ struct AddNewMed: View {
 
 struct AddNewMed_Previews: PreviewProvider {
     static var previews: some View {
-        AddNewMed(data: Medication.sampleData[0].data, Medications: .constant(Medication.sampleData), NewMedicationWindow: .constant(false))
+        AddNewMed(Medications: .constant(Medication.sampleData), NewMedicationWindow: .constant(false), timePickerViewShown: .constant(false), dataStore: .constant(Medication.sampleData[0].data))
             .previewLayout(.fixed(width: 400, height: 300))
             .preferredColorScheme(.dark)
     }

@@ -16,26 +16,24 @@ struct VitaminsApp: App {
     
     
     // comment out later
-    @State private var data: Medication.Data = Medication.sampleData[0].data
+    //@State private var data: Medication.Data = Medication.sampleData[0].data
 
     var body: some Scene {
         WindowGroup {
             
-            /*
+            
             CombinedAppView(Medications: $listOfMeds, currentMed: $currentMed)
                 .onAppear(perform: {
                     print("currentMed Set")
                     currentMed = listOfMeds[0]
                 })
-             */
             
-            
-            //comment out later
+            /*
             VStack {
                 TimeSelectorView(data: $data)
                 dataTestFile(data: $data)
             }
-            
+             */
             
             
         }

@@ -16,21 +16,36 @@ struct CombinedAppView: View {
     
     @State private var bottomSheetShown = false//Makes the Slide view thingy work
     
+    @State var timePickerViewShown = false
+    
+//    @State private var dataStore: Medication.Data = Medication.Data(title: "", theme: .kindaBlue, vitTaken: false, remHour: 0, remMinute: 0)
+    
+    @State private var dataStore: Medication.Data = Medication.Data(title: "", theme: .kindaBlue, vitTaken: false)
+    
+    
+    
     var body: some View {
         
         GeometryReader { geometry in
             ZStack {
-                MedicationView(currentMed: $currentMed, Medications: $Medications) //curent med is updating but it isnt updating the med in the Medications array
+                MedicationView(currentMed: $currentMed, Medications: $Medications, timePickerViewShown: $timePickerViewShown, dataStore: $dataStore) //curent med is updating but it isnt updating the med in the Medications array
                 
                 
                 BottomSheetView (
                     isOpen: self.$bottomSheetShown,
                     maxHeight: geometry.size.height * 0.7
                 ) {
-                    AllMedsView(Medications: $Medications, currentMed: $currentMed, bottomSheetShown: $bottomSheetShown)
+                    AllMedsView(Medications: $Medications, currentMed: $currentMed, bottomSheetShown: $bottomSheetShown, timePickerViewShown: $timePickerViewShown, dataStore: $dataStore)
                 }
                 .shadow(color: currentMed.theme.lightShadow, radius: 10, x: -10, y: -10)
                 .shadow(color: currentMed.theme.darkShadow, radius: 10, x: 10, y: 10)
+                
+                if (timePickerViewShown) {
+                   TimeSelectorView(data: $dataStore, timePickerViewShown: $timePickerViewShown)
+                }
+                
+                
+               
             }
         }
         .edgesIgnoringSafeArea(.bottom)
