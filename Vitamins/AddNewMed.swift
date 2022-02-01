@@ -50,6 +50,17 @@ struct AddNewMed: View {
                         
                         Button(action: {
                             
+                            // Request User Permision to push notifications
+                            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                                if success {
+                                    print("Success")
+                                }
+                                
+                                else if let error = error {
+                                    print(error.localizedDescription)
+                                }
+                            }
+
                             withAnimation() {
                                 timePickerViewShown = true
                             }
