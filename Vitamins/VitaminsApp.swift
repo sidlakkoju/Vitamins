@@ -10,9 +10,10 @@ import SwiftUI
 @main
 struct VitaminsApp: App {
     
-    
-    @State private var listOfMeds: [Medication] = Medication.sampleData
+//    @State private var listOfMeds: [Medication] = Medication.sampleData
     @State private var currentMed: Medication = Medication.sampleData[0]
+    
+    @StateObject private var store = MedicationStore()
     
     
     // comment out later
@@ -21,12 +22,32 @@ struct VitaminsApp: App {
     var body: some Scene {
         WindowGroup {
             
+            CombinedAppView(Medications: $store.Medications, currentMed: $currentMed) {
+                
+                MedicationStore.save(Medications: store.Medications) { result in
+                    if case .failure(let error) = result {
+                        fatalError(error.localizedDescription)
+                    }
+                }
+
+            }
+                .onAppear {
+                    MedicationStore.load { result in
+                        switch result {
+                        case .failure(let error):
+                            fatalError(error.localizedDescription)
+                        case .success(let meds):
+                            store.Medications = meds
+                        }
+                    }
+                }
             
-            CombinedAppView(Medications: $listOfMeds, currentMed: $currentMed)
+            /*
                 .onAppear(perform: {
                     print("currentMed Set")
                     currentMed = listOfMeds[0]
                 })
+             */
             
             /*
             VStack {
@@ -34,11 +55,6 @@ struct VitaminsApp: App {
                 dataTestFile(data: $data)
             }
              */
-            
-            
         }
     }
-    
-    
-    
 }
