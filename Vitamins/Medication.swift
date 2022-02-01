@@ -11,7 +11,7 @@ import SwiftUI
 import UserNotifications
 
 //should add codeable conformation to save
-struct Medication {
+struct Medication: Codable {
     let id: String
     var title: String
     var theme: Theme
@@ -177,7 +177,7 @@ extension Medication {
 extension Medication {
     static var sampleData: [Medication] =
     [
-        Medication(title: "Vitamin C", theme: .kindaBlue, remHour: 10, remMinute: 55),
+        Medication(title: "Swipe up and add a new Med!", theme: .kindaBlue, remHour: 10, remMinute: 55),
         Medication(title: "Vitamin D", theme: .kindaBlue, remHour: 10, remMinute: 55),
         Medication(title: "Drug D", theme: .kindaBlue, remHour: 10, remMinute: 55),
     ]

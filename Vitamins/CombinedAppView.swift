@@ -13,14 +13,13 @@ struct CombinedAppView: View {
     
     @Binding var Medications: [Medication]
     @Binding var currentMed: Medication
-    
+    @Environment(\.scenePhase) private var scenePhase
     @State private var bottomSheetShown = false//Makes the Slide view thingy work
-    
     @State var timePickerViewShown = false
-    
 //    @State private var dataStore: Medication.Data = Medication.Data(title: "", theme: .kindaBlue, vitTaken: false, remHour: 0, remMinute: 0)
-    
     @State private var dataStore: Medication.Data = Medication.Data(title: "", theme: .kindaBlue, vitTaken: false)
+    
+    let saveAction: ()->Void
     
     
     
@@ -49,6 +48,10 @@ struct CombinedAppView: View {
             }
         }
         .edgesIgnoringSafeArea(.bottom)
+        .onChange(of: scenePhase) { phase in
+            if phase == .inactive { saveAction() }
+        }
+        
     }
         
 }
@@ -57,7 +60,7 @@ struct CombinedAppView: View {
 struct CombinedAppView_Previews: PreviewProvider {
     static var previews: some View {
         CombinedAppView(Medications: .constant(Medication.sampleData),
-                        currentMed: .constant(Medication.sampleData[0]))
+                        currentMed: .constant(Medication.sampleData[0]), saveAction: {})
             .preferredColorScheme(.dark)
     }
 
