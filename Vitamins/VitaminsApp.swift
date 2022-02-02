@@ -32,32 +32,18 @@ struct VitaminsApp: App {
 
             }
                 .onAppear {
+                    print("Hello")
                     MedicationStore.load { result in
                         switch result {
                         case .failure(let error):
                             fatalError(error.localizedDescription)
                         case .success(let meds):
                             store.Medications = meds
+                            store.updateMedications()
                         }
                     }
                     
-                    /*
-                    let now = Date()
-                    var i: Int = 0
                     
-                    while (i < store.Medications.count) {
-                        if (store.Medications[i].history.count > 0) {
-                            if (Calendar.current.isDate(now, equalTo: store.Medications[i].history[store.Medications[i].history.count - 1].date, toGranularity: .day)) {
-                                print("yay")
-                            }
-                            else {
-                                store.Medications[i].vitTaken = false
-                            }
-                        }
-
-                        i = i + 1
-                    }
-                    */
                 }
             
             /*

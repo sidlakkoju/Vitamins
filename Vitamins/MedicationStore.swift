@@ -79,4 +79,29 @@ class MedicationStore: ObservableObject {
             i = i + 1;
         }
     }
+    
+    func updateMedications() {
+        let now: Date = Date()
+        var i: Int = 0
+        
+        while (i < self.Medications.count) {
+            print("while loop ran")
+            
+            if (self.Medications[i].history.count > 0) {
+                
+                if (Calendar.current.isDate(now, equalTo: self.Medications[i].getLastHistory().date, toGranularity: .day)) {
+                    print("Yessir")
+                    
+                }
+                else {
+                    self.Medications[i].vitTaken = false
+                    print("Hello chicken wingo")
+                }
+                
+            }
+            
+            
+            i = i + 1
+        }
+    }
 }

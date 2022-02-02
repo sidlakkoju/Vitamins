@@ -17,6 +17,7 @@ fileprivate enum Constants {
 
 struct BottomSheetView<Content: View>: View {
     @Binding var isOpen: Bool
+    @Binding var showMedicationEditView: Bool
 
     let maxHeight: CGFloat
     let minHeight: CGFloat
@@ -36,14 +37,20 @@ struct BottomSheetView<Content: View>: View {
                 height: Constants.indicatorHeight
         ).onTapGesture {
             self.isOpen.toggle()
+            if (isOpen) {
+                withAnimation {
+                    showMedicationEditView = false
+                }
+            }
         }
     }
 
-    init(isOpen: Binding<Bool>, maxHeight: CGFloat, @ViewBuilder content: () -> Content) {
+    init(isOpen: Binding<Bool>, showMedicationEditView: Binding<Bool>, maxHeight: CGFloat, @ViewBuilder content: () -> Content) {
         self.minHeight = maxHeight * Constants.minHeightRatio
         self.maxHeight = maxHeight
         self.content = content()
         self._isOpen = isOpen
+        self._showMedicationEditView = showMedicationEditView
     }
 
     var body: some View {
@@ -67,6 +74,11 @@ struct BottomSheetView<Content: View>: View {
                         return
                     }
                     self.isOpen = value.translation.height < 0
+                    if (isOpen) {
+                        withAnimation {
+                            showMedicationEditView = false
+                        }
+                    }
                 }
             )
         }
@@ -75,7 +87,7 @@ struct BottomSheetView<Content: View>: View {
 
 struct BottomSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        BottomSheetView(isOpen: .constant(false), maxHeight: 600) {
+        BottomSheetView(isOpen: .constant(false), showMedicationEditView: .constant(false), maxHeight: 600) {
             Rectangle().fill(Color.red)
         }.edgesIgnoringSafeArea(.all)
     }

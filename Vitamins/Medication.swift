@@ -172,6 +172,10 @@ extension Medication {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [self.id])
     }
     
+    func getLastHistory() -> History {
+        return self.history[self.history.count - 1]
+    }
+    
 }
 
 extension Medication {
