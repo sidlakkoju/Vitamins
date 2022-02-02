@@ -16,10 +16,7 @@ struct AddNewMed: View {
     
     @Binding var dataStore: Medication.Data
 
-
-    
-    
-    @State private var currentDate = Date()
+    @Binding var currentMed: Medication
 
 
     
@@ -86,6 +83,7 @@ struct AddNewMed: View {
                 let localMed = Medication(data: dataStore)
                 localMed.scheduleNotification()
                 Medications.append(localMed)
+                currentMed = localMed
                 NewMedicationWindow = false
             }, label: {
                 ZStack{
@@ -107,7 +105,7 @@ struct AddNewMed: View {
 
 struct AddNewMed_Previews: PreviewProvider {
     static var previews: some View {
-        AddNewMed(Medications: .constant(Medication.sampleData), NewMedicationWindow: .constant(false), timePickerViewShown: .constant(false), dataStore: .constant(Medication.sampleData[0].data))
+        AddNewMed(Medications: .constant(Medication.sampleData), NewMedicationWindow: .constant(false), timePickerViewShown: .constant(false), dataStore: .constant(Medication.sampleData[0].data), currentMed: .constant(Medication.sampleData[0]))
             .previewLayout(.fixed(width: 400, height: 300))
             .preferredColorScheme(.dark)
     }

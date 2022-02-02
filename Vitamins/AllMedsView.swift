@@ -67,7 +67,7 @@ struct AllMedsView: View {
                     } // end of Add New Medication if statement
                     
                     if (NewMedicationWindow) {
-                        AddNewMed(Medications: $Medications, NewMedicationWindow: $NewMedicationWindow, timePickerViewShown: $timePickerViewShown, dataStore: $dataStore)
+                        AddNewMed(Medications: $Medications, NewMedicationWindow: $NewMedicationWindow, timePickerViewShown: $timePickerViewShown, dataStore: $dataStore, currentMed: $currentMed)
                             .frame(width: geometry.size.width*0.9, height: 300, alignment: .center)
                             .padding(.trailing)
                             .padding(.leading)

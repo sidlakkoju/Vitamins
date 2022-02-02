@@ -70,7 +70,13 @@ class MedicationStore: ObservableObject {
     }
     
     func removeMedication(med: Medication) {
-       
-        
+        var i: Int = 0
+        while (i < Medications.count) {
+            if (med.id == Medications[i].id) {
+                Medications.remove(at: i)
+                break
+            }
+            i = i + 1;
+        }
     }
 }
