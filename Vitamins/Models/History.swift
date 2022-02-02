@@ -11,6 +11,8 @@ import Foundation
 struct History: Identifiable, Codable {
     let id: UUID
     let date: Date
+    
+    
 
     init(id: UUID = UUID(), date: Date = Date()) {
         self.id = id
@@ -23,6 +25,17 @@ struct History: Identifiable, Codable {
 extension History: Equatable {
     static func == (lhs: History, rhs: History) -> Bool {
         return lhs.id == rhs.id
+    }
+}
+
+//
+extension History {
+    func printDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        dateFormatter.locale = Locale(identifier: "en_US")
+        return dateFormatter.string(from: self.date)
     }
 }
 

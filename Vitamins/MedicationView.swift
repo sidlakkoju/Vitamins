@@ -12,11 +12,9 @@ struct MedicationView: View {
     @Binding var currentMed: Medication
     @Binding var Medications: [Medication]
     @State private var showMedicationsEditView: Bool = false
-    
     @Binding var timePickerViewShown: Bool
-    
     @Binding var dataStore: Medication.Data
-
+    
     var body: some View {
         GeometryReader() { geometry in
             VStack{
@@ -35,6 +33,11 @@ struct MedicationView: View {
                     Spacer()
                     
                     Button(action: {    // The Undo Button
+                        
+                        // Remove from record the meidcation was taken
+                        if (currentMed.vitTaken) {
+                            currentMed.history.remove(at: currentMed.history.count - 1)
+                        }
                         currentMed.vitTaken = false
                         updateMedications()
                         
@@ -60,7 +63,18 @@ struct MedicationView: View {
                     Button(action: {    // The VitTaken Button
                                         
                         currentMed.vitTaken = true
+                        
+                        // Check to see if more than a weeks worth of data is not being stored.
+                        if (currentMed.history.count == 7) {
+                            currentMed.history.remove(at: 0)
+                        }
+                        
+                        // Add a new History element
+                        currentMed.history.append(History())
+                        
+                        // Update the medication
                         updateMedications()
+                        
                     }, label: {
                         ZStack {
                             Circle()
@@ -90,10 +104,19 @@ struct MedicationView: View {
                         .padding(.bottom)
                     
                     if (showMedicationsEditView) {
-                        
-                        
                         DetailEditView(currentMed: $currentMed, Medications: $Medications, showMedicationsEditView: $showMedicationsEditView, timePickerViewShown: $timePickerViewShown, dataStore: $dataStore)
                             .frame(width: geometry.size.width*0.9, height: 300, alignment: .center)
+                    }
+                    else {
+                        if (currentMed.history.count > 0) {
+                            Text("Last Taken: " + currentMed.history[currentMed.history.count - 1].printDate())
+                                .foregroundColor(Color("Text Color"))
+                        }
+                        else {
+                            Text("Medication Not Taken Yet")
+                                .foregroundColor(Color("Text Color"))
+                        }
+                        
                     }
 
                 } //end of VStack
