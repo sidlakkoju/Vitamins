@@ -17,6 +17,9 @@ struct CombinedAppView: View {
     @State private var bottomSheetShown = false//Makes the Slide view thingy work
     @State var timePickerViewShown = false
 //    @State private var dataStore: Medication.Data = Medication.Data(title: "", theme: .kindaBlue, vitTaken: false, remHour: 0, remMinute: 0)
+    
+    @State var showMedicationsEditView: Bool = false
+    
     @State private var dataStore: Medication.Data = Medication.Data(title: "", theme: .kindaBlue, vitTaken: false)
     
     let saveAction: ()->Void
@@ -27,11 +30,12 @@ struct CombinedAppView: View {
         
         GeometryReader { geometry in
             ZStack {
-                MedicationView(currentMed: $currentMed, Medications: $Medications, timePickerViewShown: $timePickerViewShown, dataStore: $dataStore) //curent med is updating but it isnt updating the med in the Medications array
+                MedicationView(currentMed: $currentMed, Medications: $Medications,showMedicationsEditView: $showMedicationsEditView , timePickerViewShown: $timePickerViewShown, dataStore: $dataStore) //curent med is updating but it isnt updating the med in the Medications array
                 
                 
                 BottomSheetView (
                     isOpen: self.$bottomSheetShown,
+                    showMedicationEditView: self.$showMedicationsEditView,
                     maxHeight: geometry.size.height * 0.7
                 ) {
                     AllMedsView(Medications: $Medications, currentMed: $currentMed, bottomSheetShown: $bottomSheetShown, timePickerViewShown: $timePickerViewShown, dataStore: $dataStore)
@@ -55,6 +59,7 @@ struct CombinedAppView: View {
     }
         
 }
+    
     
 
 struct CombinedAppView_Previews: PreviewProvider {

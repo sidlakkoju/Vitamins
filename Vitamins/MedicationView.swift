@@ -11,7 +11,7 @@ struct MedicationView: View {
     
     @Binding var currentMed: Medication
     @Binding var Medications: [Medication]
-    @State private var showMedicationsEditView: Bool = false
+    @Binding var showMedicationsEditView: Bool
     @Binding var timePickerViewShown: Bool
     @Binding var dataStore: Medication.Data
     
@@ -20,7 +20,7 @@ struct MedicationView: View {
             VStack{
                 HStack{
                     Button(action: {    // The Edit Button
-                        
+                        dataStore = currentMed.data
                         withAnimation(.linear(duration: 1)) {
                             showMedicationsEditView = true
                         }
@@ -146,7 +146,7 @@ struct MedicationView: View {
 
 struct MedicationView_Previews: PreviewProvider {
     static var previews: some View {
-        MedicationView(currentMed: .constant(Medication.sampleData[0]), Medications: .constant(Medication.sampleData), timePickerViewShown: .constant(false), dataStore: .constant(Medication.sampleData[0].data))
+        MedicationView(currentMed: .constant(Medication.sampleData[0]), Medications: .constant(Medication.sampleData), showMedicationsEditView: .constant(false), timePickerViewShown: .constant(false), dataStore: .constant(Medication.sampleData[0].data))
             .preferredColorScheme(.dark)
     }
 }

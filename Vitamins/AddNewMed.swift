@@ -79,25 +79,28 @@ struct AddNewMed: View {
                 }
             }
             
-            Button(action: {
-                let localMed = Medication(data: dataStore)
-                localMed.scheduleNotification()
-                Medications.append(localMed)
-                currentMed = localMed
-                NewMedicationWindow = false
-            }, label: {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 20)
-                        .frame(width: 100, height: 50, alignment: .center)
-                    Text("Done")
-                        .font(.callout)
-                        .bold()
-                        .foregroundColor(Color("Text Color"))
-                        
-                }
-                
-            })
-                .padding()
+            if (!timePickerViewShown) {
+                Button(action: {
+                    let localMed = Medication(data: dataStore)
+                    localMed.scheduleNotification()
+                    Medications.append(localMed)
+                    currentMed = localMed
+                    dataStore = Medication.Data(title: "", theme: .kindaBlue, vitTaken: false, remHour: 0, remMinute: 0)
+                    NewMedicationWindow = false
+                }, label: {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 20)
+                            .frame(width: 100, height: 50, alignment: .center)
+                        Text("Done")
+                            .font(.callout)
+                            .bold()
+                            .foregroundColor(Color("Text Color"))
+                            
+                    }
+                    
+                })
+                    .padding()
+            }
         }
         
     }

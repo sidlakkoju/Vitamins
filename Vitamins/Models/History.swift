@@ -37,5 +37,6 @@ extension History {
         dateFormatter.locale = Locale(identifier: "en_US")
         return dateFormatter.string(from: self.date)
     }
+    
 }
 
