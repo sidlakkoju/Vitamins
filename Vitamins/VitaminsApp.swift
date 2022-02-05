@@ -45,20 +45,6 @@ struct VitaminsApp: App {
                     
                     
                 }
-            
-            /*
-                .onAppear(perform: {
-                    print("currentMed Set")
-                    currentMed = listOfMeds[0]
-                })
-             */
-            
-            /*
-            VStack {
-                TimeSelectorView(data: $data)
-                dataTestFile(data: $data)
-            }
-             */
         }
     }
 }

@@ -12,16 +12,12 @@ struct DetailEditView: View {
     @Binding var currentMed: Medication
     @Binding var Medications: [Medication]
     @Binding var showMedicationsEditView: Bool
-    
-    
-    
     @Binding var timePickerViewShown: Bool
-    
     @Binding var dataStore: Medication.Data
 
-
     @State private var currentDate = Date()
-
+    @State private var themeCounter: Int = 1;
+    
     var body: some View {
         VStack {
             ZStack {
@@ -35,7 +31,20 @@ struct DetailEditView: View {
                         .font(.system(size: 25, weight: .heavy, design: .default))
                     HStack {
                         Button(action: {
+                            themeCounter+=1
+                            if (themeCounter > 3) {
+                                themeCounter = 1
+                            }
                             
+                            if (themeCounter == 1) {
+                                dataStore.theme = .kindaBlue
+                            }
+                            else if (themeCounter == 2) {
+                                dataStore.theme = .veryPurple
+                            }
+                            else if (themeCounter == 3) {
+                                dataStore.theme = .whatsGreen
+                            }
                         }, label: {
                             ZStack{
                                 RoundedRectangle(cornerRadius: 10)
