@@ -39,6 +39,8 @@ struct CombinedAppView: View {
                     maxHeight: geometry.size.height * 0.7
                 ) {
                     AllMedsView(Medications: $Medications, currentMed: $currentMed, bottomSheetShown: $bottomSheetShown, timePickerViewShown: $timePickerViewShown, dataStore: $dataStore)
+                        .background(Color(.red).opacity(0.0))
+                        
                 }
                 .shadow(color: currentMed.theme.lightShadow, radius: 10, x: -10, y: -10)
                 .shadow(color: currentMed.theme.darkShadow, radius: 10, x: 10, y: 10)
