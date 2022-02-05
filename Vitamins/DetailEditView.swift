@@ -147,7 +147,7 @@ struct DetailEditView: View {
                             
                     }
                 })
-                    .alert("Important message", isPresented: $showingAlert) {
+                    .alert("Are you sure you want to Delete this Medication?", isPresented: $showingAlert) {
                                 Button("Delete") {
                                     var i: Int = 0
                                     while (i < Medications.count) {
