@@ -17,6 +17,7 @@ struct DetailEditView: View {
 
     @State private var currentDate = Date()
     @State private var themeCounter: Int = 1;
+    @State private var showingAlert = false
     
     var body: some View {
         VStack {
@@ -57,6 +58,18 @@ struct DetailEditView: View {
                         })
                         
                         Button(action: {
+                            
+                            // Request User Permision to push notifications
+                            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+                                if success {
+                                    print("Success")
+                                }
+                                
+                                else if let error = error {
+                                    print(error.localizedDescription)
+                                }
+                            }
+                            
                             withAnimation() {
                                 timePickerViewShown = true
                             }
@@ -114,6 +127,50 @@ struct DetailEditView: View {
                     }
                     
                 })
+                    .padding()
+                
+                Button(action: {
+                    
+                    
+                    showingAlert = true
+                    
+                }, label: {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color.red)
+                            .frame(width: 100, height: 50, alignment: .center)
+                            
+                        Text("Delete")
+                            .font(.callout)
+                            .bold()
+                            .foregroundColor(Color("Text Color"))
+                            
+                    }
+                })
+                    .alert("Important message", isPresented: $showingAlert) {
+                                Button("Delete") {
+                                    var i: Int = 0
+                                    while (i < Medications.count) {
+                                        if (currentMed.id == Medications[i].id) {
+                                            Medications.remove(at: i)
+                                            break
+                                        }
+                                        i = i + 1;
+                                    }
+                                    withAnimation {
+                                        showMedicationsEditView = false
+                                        if (Medications.count > 0) {
+                                            currentMed = Medications[0]
+                                            dataStore = currentMed.data
+                                        }
+                                        else {
+                                            currentMed = Medication.sampleData[0]
+                                        }
+                                    }
+                                    
+                                }
+                                Button("Cancel") { showingAlert = false}
+                            }
                     .padding()
             }
         }
